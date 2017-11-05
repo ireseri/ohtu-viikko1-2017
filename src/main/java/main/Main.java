@@ -5,6 +5,7 @@ import ohtu.ohtuvarasto.Varasto;
 
 public class Main {
 
+    //test comment
     public static void main(String[] args) {
 
         Varasto mehua = new Varasto(100.0);
