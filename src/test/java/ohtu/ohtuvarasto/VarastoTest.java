@@ -39,6 +39,7 @@ public class VarastoTest {
         varasto4 = new Varasto(-1,-1);
     }
     
+    //Test line
     @Before
     public void setUp5() {
         varasto5 = new Varasto(3,4);
