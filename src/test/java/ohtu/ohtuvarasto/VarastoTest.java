@@ -13,16 +13,65 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto varasto2;
+    Varasto varasto3;
+    Varasto varasto4;
+    Varasto varasto5;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
     }
+    
+    @Before
+    public void setUp2() {
+        varasto2 = new Varasto(-1);
+    }
+    
+    @Before
+    public void setUp3() {
+        varasto3 = new Varasto(2,2);
+    }
+    
+    @Before
+    public void setUp4() {
+        varasto4 = new Varasto(-1,-1);
+    }
+    
+    @Before
+    public void setUp5() {
+        varasto5 = new Varasto(3,4);
+    }
+    
+    @Test
+    public void konstruktoriLuoVirheellisenVaraston() {
+        assertEquals(0, varasto4.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoLiianPienenVaraston() {
+        assertEquals(3, varasto5.getSaldo(), vertailuTarkkuus);
+    }
 
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
-        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoVaaranVaraston() {
+        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+        @Test
+    public void uudellaVarastollaVaaraTilavuus() {
+        assertEquals(0, varasto4.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoVaraston() {
+        assertEquals(2, varasto3.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
@@ -36,6 +85,30 @@ public class VarastoTest {
 
         // saldon pitäisi olla sama kun lisätty määrä
         assertEquals(8, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void vaaraLisays() {
+        varasto.lisaaVarastoon(-1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void vaarapoisto() {
+        varasto.otaVarastosta(-1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otaliikaa() {
+        varasto.otaVarastosta(varasto.getSaldo()+1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void tulosta() {
+        String s = "saldo = " + varasto.getSaldo() + ", vielä tilaa " + varasto.paljonkoMahtuu();
+        assertEquals(s, varasto.toString());
     }
 
     @Test
