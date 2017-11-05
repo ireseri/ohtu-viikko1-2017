@@ -45,7 +45,7 @@ public class VarastoTest {
         varasto5 = new Varasto(3,4);
     }
     
-    //test line 2
+    //test line 3
     @Test
     public void konstruktoriLuoVirheellisenVaraston() {
         assertEquals(0, varasto4.getSaldo(), vertailuTarkkuus);
